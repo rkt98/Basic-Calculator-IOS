@@ -28,36 +28,68 @@ class ViewController: UIViewController {
     //not sure If I will implement these
     @IBAction func leftPButton(_ sender: Any)
     {
-    
+        
     }
     @IBAction func rightPButton(_ sender: Any)
     {
-    
+        
     }
     
     @IBAction func multiplyButton(_ sender: Any)
     {
-    
+        symbol = 3
+        first = getNum()
+        displayLabel.text = ""
     }
     
     @IBAction func plusButton(_ sender: Any)
     {
-        
+        symbol = 1
+        first = getNum()
+        displayLabel.text = ""
     }
     
     @IBAction func divideButton(_ sender: Any)
     {
-        
+        symbol = 4
+        first = getNum()
+        displayLabel.text = ""
     }
     
     @IBAction func minusButton(_ sender: Any)
     {
-    
+        symbol = 2;
+        first = getNum()
+        displayLabel.text = ""
     }
     
     @IBAction func calculateButton(_ sender: Any)
     {
-    
+        
+        second = getNum()
+        
+        if(symbol != 0)
+        {
+            //continue and calculate the value
+                
+            if(symbol == 1)
+            {
+                displayLabel.text = "\(first + second)"
+            }
+            else if(symbol == 2)
+            {
+                displayLabel.text = "\(first - second)"
+            }
+            else if(symbol == 3)
+            {
+                displayLabel.text = "\(first * second)"
+            }
+            else
+            {
+                displayLabel.text = "\(first / second)"
+            }
+        }
+            
     }
     
     @IBAction func decimalButton(_ sender: Any)
@@ -136,14 +168,16 @@ class ViewController: UIViewController {
         displayLabel.text = "---"
     }
     
-    func getSecond() -> Double
+    func getNum() -> Double
     {
-        return 0.0
-    }
-    
-    func getFirst() -> Double
-    {
-        return 0.0
+        if(displayLabel.text != "0.0")
+        {
+            return Double(displayLabel.text!)!
+        }
+        else
+        {
+            return 0.0
+        }
     }
     
     //checks the value in the display if it is 0.0 then
@@ -177,6 +211,8 @@ class ViewController: UIViewController {
         
         //may need to limit the size of numbers to fit on the display and or figure out different ways to represent values that are too large to show on the display
     }
+    
+    
     
     
 }
