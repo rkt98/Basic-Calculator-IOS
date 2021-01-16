@@ -4,19 +4,23 @@
 //
 //  Created by Ryan Knut Tansey on 16/01/21.
 //
+// Simple Calculator app
+// project created to teach myself how to use xcode and swift
 
 import UIKit
 
 class ViewController: UIViewController {
     
-    
+    //declare global variables first value, second value and selected operation
     var first = 0.0;
     var second = 0.0;
     // 0 - not selected, 1 = +, 2 = -, 3 = x and 4 = /
     var symbol = 0;
     
+    //define the displayLabel used to show users entered value and results of operation
     @IBOutlet weak var displayLabel: UILabel!
     
+    //clear function clears the display and resets the values and operation to default 0.0 and unselected
     @IBAction func clearButton(_ sender: Any)
     {
         displayLabel.text = "---"
@@ -25,37 +29,40 @@ class ViewController: UIViewController {
         symbol = 0;
     }
     
-    //not sure If I will implement these
+    //TODO: possibly implement a ( ) function to allow multiple functions to be used at the same time. possibly using pattern matching and having the entire line of numbers and functions added to the display and then read and split to create an expression that can be handled
+    
     @IBAction func leftPButton(_ sender: Any)
     {
-        
+        //ADD CODE
     }
     @IBAction func rightPButton(_ sender: Any)
     {
-        
+        //ADD CODE
     }
     
+    /*
+     * Define the function buttons + - / * and assign the first value to the
+     * first variable and set the symbol value so it can be processed
+     * correctly when = is pressed
+     */
     @IBAction func multiplyButton(_ sender: Any)
     {
         symbol = 3
         first = getNum()
         displayLabel.text = ""
     }
-    
     @IBAction func plusButton(_ sender: Any)
     {
         symbol = 1
         first = getNum()
         displayLabel.text = ""
     }
-    
     @IBAction func divideButton(_ sender: Any)
     {
         symbol = 4
         first = getNum()
         displayLabel.text = ""
     }
-    
     @IBAction func minusButton(_ sender: Any)
     {
         symbol = 2;
@@ -63,11 +70,17 @@ class ViewController: UIViewController {
         displayLabel.text = ""
     }
     
+    /*
+     * Define = button which performs the operation selected earlier with the
+     * first value retrieved when the operation was selected and the second
+     * value retrieved when = is pressed. Result displays in the displayLabel
+     */
     @IBAction func calculateButton(_ sender: Any)
     {
-        
+        // get and store second value from display
         second = getNum()
         
+        //check value isnt zero if it is do nothing if it isnt continue
         if(symbol != 0)
         {
             //continue and calculate the value
@@ -170,7 +183,7 @@ class ViewController: UIViewController {
     
     func getNum() -> Double
     {
-        if(displayLabel.text != "0.0")
+        if(displayLabel.text != "0.0" && displayLabel.text != "---")
         {
             return Double(displayLabel.text!)!
         }
@@ -192,9 +205,6 @@ class ViewController: UIViewController {
         {
             return true
         }
-        
-        //NOTE: have to add check for number with a decimal and nothing after it eg 123. this can cause issues needs to be 123.0
-        //also need to make sure .123123 isnt possible has to be 0.123123
     }
     
     
@@ -209,7 +219,7 @@ class ViewController: UIViewController {
             displayLabel.text = displayLabel.text! + "\(value)"
         }
         
-        //may need to limit the size of numbers to fit on the display and or figure out different ways to represent values that are too large to show on the display
+        //TODO: Limit the size of numebers so they dont go past the view of the calculator. Or add a way of representing larger values maybe limiting the number of decimal places to two or three max and round up to avoid the need for huge run off decimals
     }
     
     
